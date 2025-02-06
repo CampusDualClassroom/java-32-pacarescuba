@@ -2,7 +2,10 @@ package com.campusdual.classroom;
 
 import com.campusdual.util.Utils;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
 
 public class Exercise32 {
 
@@ -28,10 +31,10 @@ public class Exercise32 {
   }
 
   public static void printToFile(String string) {
-    try (PrintWriter pw = new PrintWriter(new File("src/main/resources/data.txt"))) {
+    try (PrintWriter pw = new PrintWriter("src/main/resources/data.txt")) {
       pw.print(string);
-    } catch (FileNotFoundException e) {
-      throw new RuntimeException(e);
+    } catch (FileNotFoundException fnfe) {
+      throw new RuntimeException(fnfe);
     }
   }
 
