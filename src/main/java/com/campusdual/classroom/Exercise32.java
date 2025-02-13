@@ -2,15 +2,14 @@ package com.campusdual.classroom;
 
 import com.campusdual.util.Utils;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
-
 
 public class Exercise32 {
 
   public static void main(String[] args) {
-    printToFile(generateStringToSave(null));
+    printToFile(generateStringToSave(generateUserInputToSave()));
   }
 
   public static String generateStringToSave(String string) {
@@ -31,12 +30,10 @@ public class Exercise32 {
   }
 
   public static void printToFile(String string) {
-    try (PrintWriter pw = new PrintWriter("src/main/resources/data.txt")) {
-      pw.print(string);
-    } catch (FileNotFoundException fnfe) {
-      throw new RuntimeException(fnfe);
+    try (BufferedWriter bw = new BufferedWriter(new PrintWriter("src/main/resources/data.txt"))) {
+      bw.write(string);
+    } catch (IOException e) {
+      throw new RuntimeException(e);
     }
   }
-
-
 }
